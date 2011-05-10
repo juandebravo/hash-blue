@@ -6,11 +6,15 @@ Gem::Specification.new do |s|
   s.name        = "hash-blue"
   s.version     = HashBlue::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TODO: Write your name"]
-  s.email       = ["TODO: Write your email address"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.authors     = ["Juan de Bravo"]
+  s.email       = ["juandebravo@gmail.com"]
+  s.homepage    = "https://api.hashblue.com/doc/"
+  s.summary     = %q{This gem provides a smooth access to _#_blue API.}
+  s.description = %q{O2 Labs has exposed the power of #blue to developers via a 
+    simple REST & JSON based API, combined with oAuth2 to developers who can 
+    create  new ways for users to manage their texts and add combine the ubiquity 
+    of SMS with their applications, users simply grant an application access to 
+    their messages stream or just certain messages.}
 
   s.rubyforge_project = "hash-blue"
 

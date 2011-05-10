@@ -2,7 +2,10 @@ O2 Labs has exposed the power of #blue to developers via a simple REST & JSON ba
 
 _#_blue is not a service designed for users to text into applications rather it is aimed at enriching the users existing text experience by building on top of their day to day text use.
 
+This gem provides a smooth access to _#_blue API.
+
 # How to install
+
     gem install hash-blue
 
 # Getting started
@@ -13,7 +16,7 @@ There're three main entities in _#_blue:
 *   contact: friend's list including phone number, name and email address.
 *   account: describes the user account
 
-I have designed the _#_blue client using an ActiveRecord approach.
+_#_blue client design is based on ActiveRecord model.
 
 ## Retrieve a valid user token
 
@@ -90,6 +93,12 @@ _#_blue API is based on oAuth secure mechanism so before using the API the user 
 
 	HashBlue::Account.find
 
+# Author
 
+Juan de Bravo
+
+juandebravo at gmail dot com
+
+Ruby sensei @ [The Lab](http://thelab.o2.com)
 
 

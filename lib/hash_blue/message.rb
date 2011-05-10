@@ -1,11 +1,53 @@
 require 'hash_blue/client'
 
+#
+# O2 Labs has exposed the power of #blue to developers via a simple REST & JSON based API, 
+# enabling new ways for users to manage their texts and add combine the ubiquity of SMS 
+# with their applications, users simply grant an application access to their messages stream 
+# or just certain messages.
+#
+# Juan de Bravo (juandebravo@gmail.com)
+# Ruby sensei at The Lab (http://thelab.o2.com)
+#
+
 module HashBlue
+
+  # This class models the Message entity, providing an easy way to CRUD operations
+  # using ActiveRecord as design model
+  #
+  # Examples of use:
+  #
+  # # Initialize client with a valid access token
+  # HashBlue::Client.user = <valid_access_token>
+  #
+  # # Retrieve all messages
+  # messages = HashBlue::Message.find(:all)
+  #
+  # # Retrieve a specific message
+  # message = HashBlue::Message.find(<valid_message_id>)
+  #
+  # # Retrieve a contact messages
+  # messages = HashBlue::Message.find({:contact => <valid_contact_id>})
+  #
+  # # Retrieve favourite messages
+  #	messages = HashBlue::Message.favourites
+  #
+  # # Mark a message as favourite
+  # message = HashBlue::Message.find(<valid_message_id>)
+  # message.favourite!
+  #
+  # # Unmark a message as favourite
+  #	message = HashBlue::Message.find(<valid_message_id>)
+  #	message.unfavourite!
+  #
+  # # Create a message
+  # HashBlue::Message.create!(<phone_number>, <content>)
+  
   class Message < Client
     attr_accessor :id
     attr_accessor :content
-    attr_accessor :contact
-    attr_accessor :sent
+    attr_accessor :contact # HashBlue::Contact object
+    attr_accessor :sent # true|false
     attr_accessor :timestamp
     
     # Mark as favourite
@@ -34,9 +76,17 @@ module HashBlue
     
     alias :destroy! :delete!
     
+    # Class methods
     class << self
       
-      def find(arg=nil)
+      # Retrieve a specific message or a set of messages
+      # @param arg:
+      # =>  nil => retrieve all messages
+      # =>  :all => retrieve all messages
+      # =>  {:contact => <contact_id>} => retrieve a specific contact messages
+      # =>  id => retrieve a specific message using a valid unique identifier
+      
+      def find(arg = nil)
         if arg.nil?
           messages = get "/messages"
         elsif arg.is_a? Symbol
@@ -48,15 +98,18 @@ module HashBlue
         elsif arg.is_a? String or arg.is_a? Fixnum
           messages = get "/messages/#{arg}"
         elsif arg.is_a? Hash
+          arg.has_key?(:contact) or raise ArgumentError, "Invalid argument #{arg}"
           messages = get "/contacts/#{arg[:contact]}/messages"
         end
         parse_response(messages)
       end
-      
+
+      # Retrieve the messaged marked as favourites
       def favourites
         parse_response(get "/messages/favourites")
       end
       
+      # Send a message to a specific number
       def create!(phone_number, content)
         message = {:phone_number => phone_number, :content => content}
         post "/messages", {:message => message}
@@ -64,6 +117,7 @@ module HashBlue
       
       private
       
+      # Method used to parse a JSON response
       def parse_response(data)
          data = JSON::parse(data)
           if data.has_key?("message")
