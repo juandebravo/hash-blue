@@ -1,8 +1,8 @@
-O2 Labs has exposed the power of #blue to developers via a simple REST & JSON based API, combined with oAuth2 to developers who can create  new ways for users to manage their texts and add combine the ubiquity of SMS with their applications, users simply grant an application access to their messages stream or just certain messages.
+O2 Labs has exposed the power of \#blue to developers via a simple REST & JSON based API, combined with oAuth2 to developers who can create  new ways for users to manage their texts and add combine the ubiquity of SMS with their applications, users simply grant an application access to their messages stream or just certain messages.
 
-_#_blue is not a service designed for users to text into applications rather it is aimed at enriching the users existing text experience by building on top of their day to day text use.
+\#blue is not a service designed for users to text into applications rather it is aimed at enriching the users existing text experience by building on top of their day to day text use.
 
-This gem provides a smooth access to _#_blue API.
+This gem provides a smooth access to \#blue API.
 
 # How to install
 
@@ -10,17 +10,17 @@ This gem provides a smooth access to _#_blue API.
 
 # Getting started
 
-There're three main entities in _#_blue:
+There're three main entities in \#blue:
 
 *   message: models a SMS sent/received by the user
 *   contact: friend's list including phone number, name and email address.
 *   account: describes the user account
 
-_#_blue client design is based on ActiveRecord model.
+\#blue client design is based on ActiveRecord model.
 
 ## Retrieve a valid user token
 
-_#_blue API is based on oAuth secure mechanism so before using the API the user must grant permissions to your application. Follow the instructions on [the HashBlue documentation](https://api.hashblue.com/doc/Authentication)
+\#blue API is based on oAuth secure mechanism so before using the API the user must grant permissions to your application. Follow the instructions on [the HashBlue documentation](https://api.hashblue.com/doc/Authentication)
 
 ### First step. Redirect user to HashBlue authorization page
 
