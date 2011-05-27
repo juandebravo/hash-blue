@@ -83,6 +83,10 @@ module HashBlue
       # @param arg:
       # =>  nil => retrieve all messages
       # =>  :all => retrieve all messages
+      # =>  :first => retrieve the first message
+      # => {:since => ISO 8601 format} => retrieve messages since the 
+      #                                   specified data (i.e. 2011-01-14T14:30Z)
+      # => {:first => index, :count => count} => retrieve count messages from index first
       # =>  {:contact => <contact_id>} => retrieve a specific contact messages
       # =>  id => retrieve a specific message using a valid unique identifier
       
@@ -92,14 +96,26 @@ module HashBlue
         elsif arg.is_a? Symbol
           if arg.eql?(:all)
             messages = get "/messages"
+          elsif arg.eql?(:first)
+            messages = get "/messages?per_page=1"
           else
             raise ArgumentError, "Invalid argument #{arg}"
           end
         elsif arg.is_a? String or arg.is_a? Fixnum
           messages = get "/messages/#{arg}"
         elsif arg.is_a? Hash
-          arg.has_key?(:contact) or raise ArgumentError, "Invalid argument #{arg}"
-          messages = get "/contacts/#{arg[:contact]}/messages"
+          if arg.has_key?(:contact)
+            messages = get "/contacts/#{arg[:contact]}/messages"
+          elsif arg.has_key?(:since)
+            arg[:since].is_a?(String) or arg[:since].is_a?
+            messages = get "/messages?since=#{arg[:since]}"
+          elsif arg.has_key?(:first)
+            messages = get "/messages?page=2&per_page=#{arg[:first]}"
+          else
+            raise ArgumentError, "Invalid argument #{arg}"
+          end
+        else
+          raise ArgumentError, "Invalid argument #{arg}"
         end
         parse_response(messages)
       end
