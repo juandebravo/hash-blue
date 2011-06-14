@@ -1,10 +1,3 @@
-require 'hash_blue/client'
-require 'hash_blue/contact'
-require 'hash_blue/message'
-require 'hash_blue/account'
-
-require 'hash_blue/engine' if defined?(Rails)
-
 #
 # O2 Labs has exposed the power of #blue to developers via a simple REST & JSON based API, 
 # enabling new ways for users to manage their texts and add combine the ubiquity of SMS 
@@ -16,4 +9,10 @@ require 'hash_blue/engine' if defined?(Rails)
 #
 
 module HashBlue
+  # Array of elements that should be configured
+  # By default, :uri endpoint is configured in the Engine. The rest of parameters are client specific
+  hashblue_config = [:uri, :client_id, :client_secret, :forward_action]
+
+  class EngineConfig  < Struct.new(*hashblue_config)
+  end
 end
