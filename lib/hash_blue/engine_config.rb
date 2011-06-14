@@ -11,7 +11,7 @@
 module HashBlue
   # Array of elements that should be configured
   # By default, :uri endpoint is configured in the Engine. The rest of parameters are client specific
-  hashblue_config = [:uri, :client_id, :client_secret, :redirect_uri, :forward_uri]
+  hashblue_config = [:uri, :client_id, :client_secret, :forward_action]
 
   class EngineConfig  < Struct.new(*hashblue_config)
   end
