@@ -27,6 +27,7 @@ You can either use the Rails Engine or create your own logic.
 ### Use the embedded Rails Engine
 
 * Insert in your rails application Gemfile the dependency hash-blue
+
     gem 'hash-blue'
 
 * Two new endpoints are created (check running ''bundle install'' and ''rake routes''):
@@ -34,17 +35,22 @@ You can either use the Rails Engine or create your own logic.
     \# this method redirects to hashblue web page to start the oAuth process
     
     /hashblue/index 
+
     \# this method gets the Oauth response, asks for a valid access token and sends the data
     
     /hashblue/code
 
 * Configure in an application initializer your specific data (i.e. config/initializer/hashblue.rb)
 
-    Rails.application.config.hashblue.client_id = <app_client_id>
-    Rails.application.config.hashblue.client_secret = <app_client_secret>
+    Rails.application.config.hashblue.client_id = "app_client_id"
+
+    Rails.application.config.hashblue.client_secret = "app_client_secret"
+
     \# Internal redirection to handle the HashBlue response. You'll receive a GET request to that action
+
     \# after OAuth mechanism with user access token info: :access_token, :expires_in, :refresh_token 
-	Rails.application.config.hashblue.forward_action = <controller#action>
+
+	Rails.application.config.hashblue.forward_action = "controller#action"
 	
 ### Create the logic to handle the OAuth mechanism
 
