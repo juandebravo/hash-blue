@@ -2,7 +2,6 @@ $:.unshift File.join(File.dirname(__FILE__),'..','lib')
 
 require 'hash-blue'
 require 'webmock/rspec'
-require 'json'
 
 describe HashBlue::Message  do
   before(:all) do
