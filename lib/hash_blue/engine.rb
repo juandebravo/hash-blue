@@ -28,20 +28,19 @@ module HashBlue
   #           - :expires_in
   #           - :refresh_token
   #
-  # These configuration can be included in your config/application.rb file:
-  #   require "hash-blue"
-  #      (...)
+  # These configuration can be included in an application initializer, i.e. config/initializers/hashblue.rb
   #
-  #      config.respond_to?("hashblue") or config.hashblue = HashBlue::EngineConfig.new
-  #      config.hashblue.client_id = "<client_id>"
-  #      config.hashblue.client_secret = "<client_secret"
-  #      config.hashblue.forward_action = "controller#action" that will receive the user token data
+  #      Rails.application.config.hashblue.client_id = "<client_id>"
+  #      Rails.application.config.hashblue.client_secret = "<client_secret"
+  #      Rails.application.config.hashblue.forward_action = "controller#action" that will receive the user token data
   #
   
-  class Engine < ::Rails::Engine
+  class Engine < Rails::Engine
     
-    initializer "hash-blue.some_init_task" do |app|
-      app.config.hashblue.nil? and app.config.hashblue = HashBlue::Engine::HashBlueConfig.new
+    # we need to create the hashblue config hash before loading the application initializer
+    initializer :hashblue, {:before => :load_config_initializers} do |app|
+
+      app.config.hashblue = HashBlue::EngineConfig.new
       # HashBlue API endpoint
       app.config.hashblue.uri = "https://hashblue.com"
     end

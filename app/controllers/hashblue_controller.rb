@@ -22,7 +22,7 @@ class HashblueController < ApplicationController
   # OAuth step1: redirect to HashBlue endpoint with the application idenfitifer and the redirect uri
   def index
     hb_params = {
-      :redirect_uri => 
+      :redirect_uri => redirect_uri
     }
     hb_params.merge!(DEFAULT_PARAMS)
     
