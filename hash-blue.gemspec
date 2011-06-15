@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Juan de Bravo"]
   s.email       = ["juandebravo@gmail.com"]
-  s.homepage    = "https://api.hashblue.com/doc/"
+  s.homepage    = "https://github.com/juandebravo/hash-blue"
   s.summary     = %q{This gem provides a smooth access to _#_blue API.}
   s.description = %q{O2 Labs has exposed the power of #blue to developers via a 
     simple REST & JSON based API, combined with oAuth2 to developers who can 
