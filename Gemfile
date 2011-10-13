@@ -4,7 +4,9 @@ source "http://rubygems.org"
 gemspec
 
 group :development, :test do
-  gem 'rspec'
+  gem 'rspec-rails', '~> 2.6'
+  gem 'rspec', '~> 2.6'
+  gem 'rails', '~> 3.0'
 end
 
 group :test do

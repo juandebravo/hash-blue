@@ -2,6 +2,7 @@ require 'hash_blue/client'
 require 'hash_blue/contact'
 require 'hash_blue/message'
 require 'hash_blue/account'
+require 'hash_blue/version'
 
 require 'hash_blue/engine' if defined?(Rails)
 
@@ -16,4 +17,5 @@ require 'hash_blue/engine' if defined?(Rails)
 #
 
 module HashBlue
+
 end

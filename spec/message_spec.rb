@@ -1,7 +1,4 @@
-$:.unshift File.join(File.dirname(__FILE__),'..','lib')
-
-require 'hash-blue'
-require 'webmock/rspec'
+require 'spec_helper'
 
 describe HashBlue::Message  do
   before(:all) do
@@ -9,7 +6,7 @@ describe HashBlue::Message  do
   end
   
   context "initialize" do
-    it "should be an instance of HashBlue::Message when instanciated" do
+    it "should be an instance of HashBlue::Message when instantiated" do
       HashBlue::Message.new.should be_an_instance_of(HashBlue::Message)
     end
   end
@@ -42,7 +39,7 @@ describe HashBlue::Message  do
       message[1].should be_an_instance_of(HashBlue::Message)
     end
 
-    it "should return the first message when paramter is :first" do
+    it "should return the first message when parameter is :first" do
       stub_request(:get, "https://api.hashblue.com/messages?per_page=1").
                with(:headers => {'Accept'=>'*/*', 'Authorization'=>'OAuth XXXXX'}).
                to_return(:status => 200, :body => '{"messages":[{"uri":"https://api.hashblue.com/messages/foo","timestamp":"2011-05-09T21:43:52Z","sent":true,"contact":{"name":"Mike","uri":"https://api.hashblue.com/contacts/mike","messages":"https://api.hashblue.com/contacts/mike/messages","phone_number":"07711223344","msisdn":"447711223344","email":"mike@foo.com"},"content":"test","favourite":false}]}', :headers => {})      

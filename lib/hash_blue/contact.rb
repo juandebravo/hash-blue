@@ -1,5 +1,3 @@
-require 'hash_blue/contact'
-
 #
 # O2 Labs has exposed the power of #blue to developers via a simple REST & JSON based API, 
 # enabling new ways for users to manage their texts and add combine the ubiquity of SMS 

@@ -1,7 +1,5 @@
-$:.unshift File.join(File.dirname(__FILE__),'..','lib')
 
-require 'hash-blue'
-require 'webmock/rspec'
+require 'spec_helper'
 
 describe HashBlue::Contact  do
   before(:all) do
